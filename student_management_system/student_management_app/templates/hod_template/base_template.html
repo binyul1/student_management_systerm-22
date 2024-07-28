@@ -104,9 +104,10 @@
       <!-- Content Wrapper. Contains page content -->
 
       <div class="content-wrapper">
-        {% include 'hod_template/content_header.html'%}
         <!-- Content Header (Page header) -->
-        {% block main_content %} {% endblock main_content %}
+         {% include 'hod_template/content_header.html' %}
+        {% block page_title %} 
+        {% endblock page_title %}
         <!-- /.content-header -->
 
         <!-- Main content -->
