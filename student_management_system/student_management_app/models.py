@@ -22,7 +22,7 @@ class staffs(models.Model):
     updated_at=models.DateTimeField(auto_now=True)
     objects=models.Manager()
 
-class Course(models.Model):
+class Courses(models.Model):
     id=models.AutoField(primary_key=True)
     course_name=models.CharField(max_length=255)
     created_at=models.DateTimeField(auto_now_add=True)
@@ -32,7 +32,7 @@ class Course(models.Model):
 class Subjects(models.Model):
     id=models.AutoField(primary_key=True)
     subject_name=models.CharField(max_length=255)
-    course_id=models.ForeignKey(Course,on_delete=models.CASCADE) 
+    course_id=models.ForeignKey(Courses,on_delete=models.CASCADE) 
     staff_id=models.ForeignKey(staffs,on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -44,7 +44,7 @@ class Students(models.Model):
     gender=models.CharField(max_length=255)
     profile_pic=models.FileField()
     address=models.TextField()
-    Course_id=models.ForeignKey(Course,on_delete=models.DO_NOTHING)
+    Course_id=models.ForeignKey(Courses,on_delete=models.DO_NOTHING)
     session_starts_year=models.DateField()
     session_end_year=models.DateField() 
     created_at=models.DateTimeField(auto_now_add=True)

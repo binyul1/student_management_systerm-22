@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 
-from student_management_app.models import CustomUser,staffs
+from student_management_app.models import Courses, CustomUser,staffs
 def admin_home(request):
     return render(request,'hod_template/home_content.html')
 
@@ -31,3 +31,18 @@ def add_staff_save(request):
         except:
             messages.error(request,"Failed to Add Staff")
             return HttpResponseRedirect('/add_staff')
+def add_course(request):
+    return render(request,'hod_template/add_course_template.html')
+def add_course_save(request):
+    if request.method!="POST":
+        return HttpResponse("Method Not Allowed")
+    else:
+        course=request.POST.get("course")
+        try:
+            course_model=Courses(course_name=course)
+            course_model.save()
+            messages.success(request,"Successfully Added Course")
+            return HttpResponseRedirect('/add_course')
+        except:
+            messages.error(request,"Failed to Add Course")
+            return HttpResponseRedirect('/add_course')
