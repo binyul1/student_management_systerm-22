@@ -1,6 +1,10 @@
+from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
-
+from student_management_app.models import CustomUser
 def admin_home(request):
     return render(request,'hod_template/home_content.html')
 
@@ -13,7 +17,16 @@ def add_staff_save(request):
     else:
         first_name=request.POST.get('first_name')
         last_name=request.POST.get('last_name')
-        first_name=request.POST.get('first_name')
-        first_name=request.POST.get('first_name')
+        email=request.POST.get('email')
+        password=request.POST.get('password')
         username=request.POST.get('username')
         address=request.POST.get('address')
+        try:
+            user=CustomUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,user_type=2)
+            user.staffs.address=address
+            user.save()
+            messages.success(request,"Successfully Added Staff")
+            return HttpResponseRedirect('/add_staff')
+        except:
+            messages.error(request,"Failed to Add Staff")
+            return HttpResponseRedirect('/add_staff')

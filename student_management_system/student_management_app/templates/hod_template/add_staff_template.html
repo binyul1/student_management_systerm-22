@@ -36,7 +36,6 @@
               <div class="form-group">
                 <label for="exampleInputPassword1">First Name</label>
                 <input
-                  type="password"
                   class="form-control"
                   placeholder="First Name"
                   name="first_name"
@@ -45,7 +44,6 @@
               <div class="form-group">
                 <label for="exampleInputPassword1">Last Name</label>
                 <input
-                  type="password"
                   class="form-control"
                   placeholder="Last Name"
                   name="Last_name"
@@ -54,7 +52,6 @@
               <div class="form-group">
                 <label for="exampleInputPassword1">UserName</label>
                 <input
-                  type="password"
                   class="form-control"
                   placeholder="Username"
                   name="username"
@@ -63,12 +60,19 @@
               <div class="form-group">
                 <label for="exampleInputPassword1">Address</label>
                 <input
-                  type="password"
                   class="form-control"
                   placeholder="Address"
                   name="address"
                 />
               </div>
+              <div class="form-group">
+                {% if messages %}
+                  {% for message in messages %}
+                  {% if message.tags == 'error' %}
+                  <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                  {% endif %}
+                  {% endfor %}
+                {% endif %}
               </div>
             </div>
             <!-- /.card-body -->
