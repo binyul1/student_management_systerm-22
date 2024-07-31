@@ -17,9 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
-
 from student_management_app import views,HodViews
-from student_management_system import settings
+from django.conf import settings
 
 urlpatterns = [
     path('demo',views.showDemoPage),
@@ -32,5 +31,7 @@ urlpatterns = [
     path('add_staff',HodViews.add_staff),
     path('add_staff_save',HodViews.add_staff_save),
     path('add_course',HodViews.add_course),
-    path('add_course_save',HodViews.add_course_save)
+    path('add_course_save',HodViews.add_course_save),
+    path('add_student',HodViews.add_student),
+    path('add_student_save',HodViews.add_student_save)
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
