@@ -71,11 +71,8 @@ def add_student_save(request):
             user.students.address=address
             course_obj=Courses.objects.get(id=course_id)
             user.students.course_id=course_obj
-            
-            start_date=datetime.datetime.strptime(session_start, '%d-%m-%y').strftime('%Y-%m-%d')
-            end_date=datetime.datetime.strptime(session_end, '%d-%m-%y').strftime('%Y-%m-%d')
-            user.students.session_start_year=start_date
-            user.students.session_end_year=end_date
+            user.students.session_start_year=session_start
+            user.students.session_end_year=session_end
             user.students.gender=sex
             user.students.profile_pic=""
             user.save()
