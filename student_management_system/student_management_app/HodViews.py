@@ -65,15 +65,12 @@ def add_student_save(request):
         course_id=request.POST.get("course")
         sex=request.POST.get("sex")
         try:
-
             user=CustomUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,user_type=3)
             user.students.address=address
             course_obj=Courses.objects.get(id=course_id)
             user.students.course_id=course_obj
-             
             start_date=datetime.strptime(session_start, '%d-%m-%y').strftime('%Y-%m-%d')
             end_date=datetime.strptime(session_end, '%d-%m-%y').strftime('%Y-%m-%d')
-
             user.students.session_start_year=start_date
             user.students.session_end_year=end_date
             user.students.gender=sex

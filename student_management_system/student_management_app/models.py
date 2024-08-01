@@ -32,7 +32,7 @@ class Courses(models.Model):
 class Subjects(models.Model):
     id=models.AutoField(primary_key=True)
     subject_name=models.CharField(max_length=255)
-    course_id=models.ForeignKey(Courses,on_delete=models.CASCADE) 
+    course_id=models.ForeignKey(Courses,on_delete=models.CASCADE,default=1) 
     staff_id=models.ForeignKey(staffs,on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -132,9 +132,9 @@ def create_user_profile(sender,instance,created,**kwargs):
         if instance.user_type==1:
             AdminHOD.objects.create(admin=instance)
         if instance.user_type==2:
-            staffs.objects.create(admin=instance)
+            staffs.objects.create(admin=instance,address="")
         if instance.user_type==3:
-            Students.objects.create(admin=instance)
+            Students.objects.create(admin=instance,Course_id=Courses.objects.get(id=1),session_starts_year="2020-01-01",session_end_year="2021-01-01",address="",profile_pic="",gender="")
 
 @receiver(post_save,sender=CustomUser)
 def save_user_profile(sender,instance,**kwargs):
