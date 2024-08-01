@@ -47,9 +47,11 @@ def add_course_save(request):
         except:
             messages.error(request,"Failed to Add Course")
             return HttpResponseRedirect('add_course')
+        
 def add_student(request):
     courses=Courses.objects.all()
     return render(request,'hod_template/add_student_template.html',{"courses":courses})
+
 def add_student_save(request):
     if request.method!="POST":
         return HttpResponse("Method Not Allowed")
@@ -69,8 +71,9 @@ def add_student_save(request):
             user.students.address=address
             course_obj=Courses.objects.get(id=course_id)
             user.students.course_id=course_obj
-            start_date=datetime.strptime(session_start, '%d-%m-%y').strftime('%Y-%m-%d')
-            end_date=datetime.strptime(session_end, '%d-%m-%y').strftime('%Y-%m-%d')
+            
+            start_date=datetime.datetime.strptime(session_start, '%d-%m-%y').strftime('%Y-%m-%d')
+            end_date=datetime.datetime.strptime(session_end, '%d-%m-%y').strftime('%Y-%m-%d')
             user.students.session_start_year=start_date
             user.students.session_end_year=end_date
             user.students.gender=sex
