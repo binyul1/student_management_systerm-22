@@ -84,8 +84,8 @@ def add_student_save(request):
      
 def add_subject(request):
     courses=Courses.objects.all()
-    staffs=CustomUser.objects.get(user_type=2)
-    return render(request,'add_subject_template.html',{"staffs":staffs,"courses":courses})
+    staffs=CustomUser.objects.filter(user_type=2)
+    return render(request,'hod_template/add_subject_template.html',{"staffs":staffs,"courses":courses})
 def add_subject_save(request):
     pass
     # if request.method!="POST":
