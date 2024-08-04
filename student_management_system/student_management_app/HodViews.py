@@ -82,3 +82,23 @@ def add_student_save(request):
             messages.error(request,"Failed to Add Student")
             return HttpResponseRedirect('add_student')
      
+def add_subject(request):
+    courses=Courses.objects.all()
+    staffs=CustomUser.objects.get(user_type=2)
+    return render(request,'add_subject_template.html',{"staffs":staffs,"courses":courses})
+def add_subject_save(request):
+    pass
+    # if request.method!="POST":
+    #     return HttpResponse("Method Not Allowed")
+    # else:
+    #     subject_name=request.POST.get("subject_name")
+    #     course_id=request.POST.get("course")
+    #     staff_id=request.POST.get("staff")
+    #     try:
+    #         subject=Subjects(subject_name=subject_name,course_id=Courses.objects.get(id=course_id),staff_id=CustomUser.objects.get(id=staff_id))
+    #         subject.save()
+    #         messages.success(request,"Successfully Added Subject")
+    #         return HttpResponseRedirect('add_subject')
+    #     except:
+    #         messages.error(request,"Failed to Add Subject")
+    #         return HttpResponseRedirect('add_subject')
