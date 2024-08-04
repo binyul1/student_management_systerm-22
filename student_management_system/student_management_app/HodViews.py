@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from student_management_app.models import Courses, CustomUser,staffs
+from student_management_app.models import Courses, CustomUser,staffs, Subjects
 
 def admin_home(request):
     return render(request,'hod_template/home_content.html')
@@ -85,20 +85,26 @@ def add_student_save(request):
 def add_subject(request):
     courses=Courses.objects.all()
     staffs=CustomUser.objects.filter(user_type=2)
-    return render(request,'hod_template/add_subject_template.html',{"staffs":staffs,"courses":courses})
+    return render(request,"hod_template/add_subject_template.html",{"staffs":staffs,"courses":courses})
+    
 def add_subject_save(request):
+    if request.method!="POST":
+        return HttpResponse("Method Not Allowed")
+    else:
+        subject_name=request.POST.get("subject_name")
+        course_id=request.POST.get("course")
+        course=Courses.objects.get(id=course_id)
+        staff_id=request.POST.get("staff")
+        staff=CustomUser.objects.get(id=staff_id)
+
+        try:
+            subject=Subjects(subject_name=subject_name,course_id=course,staff_id=staff)
+            subject.save()
+            messages.success(request,"Sucessfully Added Subject")
+            return HttpResponseRedirect('add_subject')
+        except:
+            messages.error(request,"Failed to Add Subject")
+            return HttpResponseRedirect('add_subject')
+
+def manage_staff(request):
     pass
-    # if request.method!="POST":
-    #     return HttpResponse("Method Not Allowed")
-    # else:
-    #     subject_name=request.POST.get("subject_name")
-    #     course_id=request.POST.get("course")
-    #     staff_id=request.POST.get("staff")
-    #     try:
-    #         subject=Subjects(subject_name=subject_name,course_id=Courses.objects.get(id=course_id),staff_id=CustomUser.objects.get(id=staff_id))
-    #         subject.save()
-    #         messages.success(request,"Successfully Added Subject")
-    #         return HttpResponseRedirect('add_subject')
-    #     except:
-    #         messages.error(request,"Failed to Add Subject")
-    #         return HttpResponseRedirect('add_subject')
