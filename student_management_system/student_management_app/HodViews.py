@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from student_management_app.models import Courses, CustomUser,staffs, Subjects
+from student_management_app.models import Courses, CustomUser,Staffs, Subjects, Students
 
 def admin_home(request):
     return render(request,'hod_template/home_content.html')
@@ -107,4 +107,9 @@ def add_subject_save(request):
             return HttpResponseRedirect('add_subject')
 
 def manage_staff(request):
-    pass
+    staffs=Staffs.objects.all()
+    return render(request,'hod_template/manage_staff_template.html',{"staffs":staffs})
+
+def manage_student(request):
+    students=Students.objects.all()
+    return render(request,'hod_template/manage_student_template.html',{"students":students})

@@ -14,7 +14,7 @@ class AdminHOD(models.Model):
     updated_at=models.DateTimeField(auto_now=True)
     objects=models.Manager()
 
-class staffs(models.Model):
+class Staffs(models.Model):
     id=models.AutoField(primary_key=True)
     admin=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     address=models.TextField()
@@ -80,7 +80,7 @@ class LeaveReportStudent(models.Model):
 
 class LeaveReportStaff(models.Model):
     id=models.AutoField(primary_key=True)
-    staff_id=models.ForeignKey(staffs,on_delete=models.CASCADE)
+    staff_id=models.ForeignKey(Staffs,on_delete=models.CASCADE)
     leave_date=models.CharField(max_length=255)
     leave_message=models.TextField()
     leave_status=models.BooleanField(default=True)
@@ -100,7 +100,7 @@ class FeedBackStudent(models.Model):
 
 class FeedBackStaffs(models.Model):
     id=models.AutoField(primary_key=True)
-    staff_id=models.ForeignKey(staffs,on_delete=models.CASCADE)
+    staff_id=models.ForeignKey(Staffs,on_delete=models.CASCADE)
     feedback=models.TextField()
     feedback_reply=models.TextField()
     leave_status=models.BooleanField(default=True)
@@ -120,7 +120,7 @@ class NotificationStudent(models.Model) :
 
 class NotificationStaff(models.Model) :
     id=models.AutoField(primary_key=True)
-    staff_id=models.ForeignKey(staffs,on_delete=models.CASCADE)
+    staff_id=models.ForeignKey(Staffs,on_delete=models.CASCADE)
     message=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -132,7 +132,7 @@ def create_user_profile(sender,instance,created,**kwargs):
         if instance.user_type==1:
             AdminHOD.objects.create(admin=instance)
         if instance.user_type==2:
-            staffs.objects.create(admin=instance,address="")
+            Staffs.objects.create(admin=instance,address="")
         if instance.user_type==3:
             Students.objects.create(admin=instance,course_id=Courses.objects.get(id=1),session_starts_year="2020-01-01",session_end_year="2021-01-01",address="",profile_pic="",gender="")
 
