@@ -142,5 +142,21 @@ def edit_staff_save(request):
         email=request.POST.get("email")
         username=request.POST.get("username")
         address=request.POST.get("address")
+        try:
+            user=CustomUser.objects.get(id=staff_id)
+            user.first_name=first_name
+            user.last_name=last_name
+            user.email=email
+            user.username=username
+            user.save()
 
-        user=CustomUser.objects.get(id=staff_id)
+            staff_model=Staffs.objects.get(admin=staff_id)
+            staff_model.address=address
+            staff_model.save()
+
+            messages.success(request,"Sucessfully Edited Staff")
+            return HttpResponseRedirect('/edit_staff/'+staff_id)
+        except:
+            messages.error(request,"Failed to Edit Staff")
+            return HttpResponseRedirect('/edit_staff')
+
