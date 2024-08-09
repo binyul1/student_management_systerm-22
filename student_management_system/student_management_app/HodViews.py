@@ -67,10 +67,10 @@ def add_student_save(request):
         course_id=request.POST.get("course")
         sex=request.POST.get("sex")
 
-        # profile_pic=request.FILES['profile_pic']
-        # fs=FileSystemStorage()
-        # filename=fs.save(profile_pic.name,profile_pic)
-        # profile_pic_url=fs.url(filename)
+        profile_pic=request.FILES['profile_pic']
+        fs=FileSystemStorage()
+        filename=fs.save(profile_pic.name,profile_pic)
+        profile_pic_url=fs.url(filename)
 
         try:
             user=CustomUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,user_type=3)
@@ -80,7 +80,7 @@ def add_student_save(request):
             user.students.session_start_year=session_start
             user.students.session_end_year=session_end
             user.students.gender=sex
-            # user.students.profile_pic=profile_pic_url
+            user.students.profile_pic=profile_pic_url
             user.save()
             messages.success(request,"Successfully Added Student")
             return HttpResponseRedirect('add_student')
@@ -158,7 +158,7 @@ def edit_staff_save(request):
             return HttpResponseRedirect('/edit_staff/'+staff_id)
         except:
             messages.error(request,"Failed to Edit Staff")
-            return HttpResponseRedirect('/edit_staff')
+            return HttpResponseRedirect('/edit_staff/'+staff_id)
 
 def edit_student(request,student_id):
     courses=Courses.objects.all()
@@ -185,7 +185,7 @@ def edit_student_save(request):
             user.last_name=last_name
             user.username=username
             user.email=email
-            student.save()
+            user.save()
 
             student=Students.objects.get(admin=student_id)
             student.address=address
@@ -196,7 +196,7 @@ def edit_student_save(request):
             student.course_id=course
             student.save()
             messages.success(request,"Sucessfully Edited Student")
-            return HttpResponseRedirect('/edit_student'+student_id)
+            return HttpResponseRedirect('/edit_student/'+student_id)
         except:
-            messages.error(request,"Failed to Edit Student")
-            return HttpResponseRedirect('/edit_student'+student_id)
+            messages.error(request,"Failed to Edit Staff")
+            return HttpResponseRedirect('/edit_student/'+student_id)
