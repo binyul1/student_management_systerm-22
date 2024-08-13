@@ -180,6 +180,7 @@ def edit_student(request,student_id):
     form.fields['session_start'].initial=student.session_start
     form.fields['session_end'].initial=student.session_end
 
+
     return render(request,"hod_template/edit_student_template.html",{"form":form,"id":student_id})
 
 def edit_student_save(request):
