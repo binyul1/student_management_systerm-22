@@ -19,8 +19,7 @@ from django.conf.urls.static import static
 from django.urls import path
 from student_management_app import HodViews, views
 from django.conf import settings
-from student_management_app import views, HodViews, StudentViews
-from student_management_system.student_management_app import StaffViews
+from student_management_app import views, HodViews, StudentViews ,StaffViews
 
 
 
@@ -54,7 +53,7 @@ urlpatterns = [
     path('edit_course_save',HodViews.edit_course_save,name="edit_course_save"),
 
 #       Staffs URL Path
-    path('saff_home',StaffViews.staff_home,name="staff_home"),
+    path('staff_home',StaffViews.staff_home,name="staff_home"),
     path('student_home',StudentViews.student_home,name="student_home"),
 
 
