@@ -43,10 +43,10 @@ class EditStudentForm(forms.Form):
 
     course_list = []
     try:
-        courses = Courses.objects.all()
+        courses = Courses.objects.all() 
         for course in courses:
-        small_course = (course.id,course.course_name)
-        course_list.append(small_course)
+            small_course = (course.id,course.course_name)
+            course_list.append(small_course)
     except:
         course_list = []
     gender_choice = (
