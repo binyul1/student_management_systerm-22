@@ -17,9 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path
-from student_management_app import HodViews, views
+from student_management_app import HodViews, StaffViews, StudentViews,views
 from django.conf import settings
-from student_management_app import views, HodViews, StudentViews ,StaffViews
 
 
 
@@ -52,11 +51,9 @@ urlpatterns = [
     path('edit_course/<str:course_id>',HodViews.edit_course,name="edit_course"),
     path('edit_course_save',HodViews.edit_course_save,name="edit_course_save"),
     path('manage_session',HodViews.manage_session,name="manage_session"),
-   
-
-#       Staffs URL Path
+#   Staff URL Path
     path('staff_home',StaffViews.staff_home,name="staff_home"),
     path('student_home',StudentViews.student_home,name="student_home"),
-
+    
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
