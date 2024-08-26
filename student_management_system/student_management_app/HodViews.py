@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 from student_management_app.forms import AddStudentForm, EditStudentForm
-from student_management_app.models import Courses, CustomUser, Staffs, Students, Subjects
+from student_management_app.models import Courses, CustomUser, SessionYearModel, Staffs, Students, Subjects
 from django.core.files.storage import FileSystemStorage
 
 def admin_home(request):
@@ -46,10 +46,10 @@ def add_course_save(request):
             course_model = Courses(course_name= course)
             course_model.save()
             messages.success(request,"Successfully Added Course")
-            return HttpResponseRedirect(reverse("/add_course"))
+            return HttpResponseRedirect(reverse("add_course"))
         except:
             messages.error(request,"Failed to Added Course")
-            return HttpResponseRedirect(reverse("/add_course"))          
+            return HttpResponseRedirect(reverse("add_course"))          
 
 
 def add_student(request):
@@ -116,10 +116,10 @@ def add_subject_save(request):
             subject=Subjects(subject_name=subject_name,course_id=course,staff_id=staff)
             subject.save()
             messages.success(request,"Successfully Added Subject")
-            return HttpResponseRedirect(reverse("/add_subject"))
+            return HttpResponseRedirect(reverse("add_subject"))
         except:
             messages.error(request,"Failed to Add Subject")
-            return HttpResponseRedirect(reverse("/add_subject"))
+            return HttpResponseRedirect(reverse("add_subject"))
         
 def manage_staff(request):
     staffs = Staffs.objects.all()
@@ -294,6 +294,24 @@ def edit_course_save(request):
         except:
             messages.error(request,"Failed to Edit Course")
             return HttpResponseRedirect(reverse("edit_course",kwargs={"course_id":course_id}))
-        
+
 def manage_session(request):
     return render(request,"hod_template/manage_session_template.html")
+
+def add_session_save(request):
+    if request.method!='POST':
+        return HttpResponseRedirect(reverse("manage_session"))
+    else:
+        session_start_year = request.POST.get("session_start")
+        session_end_year = request.POST.get("session_end")
+
+        try:
+            sessionyear=SessionYearModel(session_start_year=session_start_year,session_end_year=session_end_year)
+            sessionyear.save()
+            messages.success(request,"Successfully Added Session")
+            return HttpResponseRedirect(reverse("manage_session"))
+        except:
+            messages.error(request,"Failed to Add Session")
+            return HttpResponseRedirect(reverse("manage_session"))
+        
+
