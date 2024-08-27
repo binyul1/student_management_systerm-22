@@ -15,22 +15,24 @@ class AddStudentForm(forms.Form):
     username = forms.CharField(label = "Usernam", max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
     address = forms.CharField(label = "Address", max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
     course_list = []
-    
-    courses = Courses.objects.all()
+    try:
+        courses = Courses.objects.all()
 
-    for course in courses:
-        small_course = (course.id,course.course_name)
-        course_list.append(small_course)
-    
+        for course in courses:
+            small_course = (course.id,course.course_name)
+            course_list.append(small_course)
+    except:
+        course_list = []
     # course_list = []
 
     session_list = []
-    sessions = SessionYearModel.object.all()
-
-    for ses in sessions:
-        small_ses = (ses.id,str(ses.session_start_year)+"  To  "+str(ses.session_end_year))
-        session_list.append(small_ses)
-   
+    try:
+        sessions = SessionYearModel.object.all()
+        for ses in sessions:
+            small_ses = (ses.id,str(ses.session_start_year)+"  To  "+str(ses.session_end_year))
+            session_list.append(small_ses)
+    except:
+        session_list = []
 
     gender_choice = (
         ('Male',"Male"),
@@ -52,7 +54,7 @@ class EditStudentForm(forms.Form):
     course_list = []
     try:
         courses = Courses.objects.all()
-        for course in courses:
+        for course in Courses:
             small_course = (course.id,course.course_name)
             course_list.append(small_course)
 
