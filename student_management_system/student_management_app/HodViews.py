@@ -13,7 +13,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from student_management_app.forms import AddStudentForm, EditStudentForm
-from student_management_app.models import CustomUser, Staffs, Courses, Subjects, Students
+from student_management_app.models import CustomUser, SessionYearModel, Staffs, Courses, Subjects, Students
 
 
 def admin_home(request):
@@ -313,6 +313,7 @@ def edit_course_save(request):
             messages.error(request,"Failed to Edit Course")
             return HttpResponseRedirect(reverse("edit_course",kwargs={"course_id":course_id}))
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 def manage_session(request):
     return render(request,"hod_template/manage_session_template.html")
@@ -323,10 +324,23 @@ def add_session_save(request):
     else:
         session_start_year = request.POST.get("session_start")
         session_end_year = request.POST.get("session_end")
+=======
+
+def manage_session (request):
+     return render(request,"hod_template/manage_session_template.html")
+
+def add_session_save(request):
+    if request.method!="POST":
+        return HttpResponseRedirect(reverse("manage_session"))
+    else:
+        session_start_year=request.POST.get("session_start")
+        session_end_year=request.POST.get("session_end")
+>>>>>>> 3877719 (sessionyear1)
 
         try:
             sessionyear=SessionYearModel(session_start_year=session_start_year,session_end_year=session_end_year)
             sessionyear.save()
+<<<<<<< HEAD
             messages.success(request,"Successfully Added Session")
             return HttpResponseRedirect(reverse("manage_session"))
         except:
@@ -336,3 +350,10 @@ def add_session_save(request):
 
 =======
 >>>>>>> 7877d87 (restricted)
+=======
+            messages.success(request, "Successfully Added Session")
+            return HttpResponseRedirect(reverse("manage_session"))
+        except:
+            messages.error(request, "Failed to Add Session")
+            return HttpResponseRedirect(reverse("manage_session"))
+>>>>>>> 3877719 (sessionyear1)

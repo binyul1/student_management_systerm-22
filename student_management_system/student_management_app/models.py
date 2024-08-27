@@ -13,7 +13,16 @@ class SessionYearModel(models.Model):
 
 =======
 # Create your models here.
+<<<<<<< HEAD
 >>>>>>> 7877d87 (restricted)
+=======
+
+class  SessionYearModel(models.Model):
+    id=models.AutoField(primary_key=True)
+    session_start_year=models.DateField()
+    session_end_year=models.DateField()
+
+>>>>>>> 3877719 (sessionyear1)
 class CustomUser(AbstractUser):
     user_type_data=((1,"HOD"),(2,"Staff"),(3,"Student"))
     user_type=models.CharField(default=1,choices=user_type_data,max_length=10)
@@ -56,7 +65,11 @@ class Students(models.Model):
     profile_pic=models.FileField()
     address=models.TextField()
     course_id=models.ForeignKey(Courses,on_delete=models.DO_NOTHING)
+<<<<<<< HEAD
     session_year_id = models.ForeignKey(SessionYearModel,on_delete=models.CASCADE)
+=======
+    session_year_id=models.ForeignKey(SessionYearModel,on_delete=models.CASCADE,default=1)
+>>>>>>> 3877719 (sessionyear1)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
@@ -65,7 +78,11 @@ class Attendance(models.Model):
     id=models.AutoField(primary_key=True)
     subject_id=models.ForeignKey(Subjects,on_delete=models.DO_NOTHING)
     attendance_date=models.DateTimeField(auto_now_add=True)
+<<<<<<< HEAD
     session_year_id = models.ForeignKey(SessionYearModel,on_delete=models.CASCADE)
+=======
+    session_year_id=models.ForeignKey(SessionYearModel,on_delete=models.CASCADE,default=1)
+>>>>>>> 3877719 (sessionyear1)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
     objects = models.Manager()

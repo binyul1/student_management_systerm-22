@@ -1,10 +1,17 @@
 {% extends 'hod_template/base_template.html' %}
 {% block page_tile %}
+<<<<<<< HEAD
 Add Subject
 {% endblock page_tile %}
 {% load static %}
 
 {% block main_content %}
+=======
+Add Session Year
+{% endblock page_tile %}
+{% block main_content %}
+
+>>>>>>> 3877719 (sessionyear1)
 <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -12,6 +19,7 @@ Add Subject
         <!-- general form elements -->
         <div class="card card-primary">
           <div class="card-header">
+<<<<<<< HEAD
             <h3 class="card-title">Add Subject</h3>
           </div>
           <!-- /.card-header -->
@@ -60,6 +68,49 @@ Add Subject
         </div>
       </div>
       <!-- /.card -->
+=======
+            <h3 class="card-title">Add Session Year</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" action="/add_session_save" method="post">
+            {% csrf_token %}
+            <div class="card-body">
+              <div class="form-group">
+                <label>Session Start Year</label>
+                <input type="date" class="form-control" name="session_start" placeholder="Enter Session Start Year">
+              </div>
+              <div class="form-group">
+                <label>Session End Year</label>
+                <input type="date" class="form-control" name="session_end" placeholder="Enter Session End Year">
+              </div>
+              <div class="form-group">
+                {% if messages %}
+                  {% for message in messages %}
+                  {% if message.tags == 'error' %}
+                  <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                  {% endif %}
+                  {% if message.tags == 'success' %}
+                  <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                  {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary btn-block">Add Session Year</button>
+        </div>
+        </form>
+      </div>
+      <!-- /.card -->
+
+
+
+>>>>>>> 3877719 (sessionyear1)
     </div>
   </div>
 </section>
