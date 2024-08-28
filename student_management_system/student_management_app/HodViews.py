@@ -328,7 +328,7 @@ def add_session_save(request):
 
 def manage_session (request):
      return render(request,"hod_template/manage_session_template.html")
-
+    
 def add_session_save(request):
     if request.method!="POST":
         return HttpResponseRedirect(reverse("manage_session"))
