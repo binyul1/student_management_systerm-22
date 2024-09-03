@@ -165,10 +165,14 @@ def create_user_profile(sender,instance,created,**kwargs):
             Staffs.objects.create(admin=instance,address="")
         if instance.user_type==3:
 <<<<<<< HEAD
+<<<<<<< HEAD
             Students.objects.create(admin=instance,course_id=Courses.objects.get(id=1),session_year_id=SessionYearModel.object.get(id=1),address="",profile_pic="",gender="")
 =======
             Students.objects.create(admin=instance,course_id=Courses.objects.get(id=1),session_start_year="2020-01-01",session_end_year="2021-01-01",address="",profile_pic="",gender="")
 >>>>>>> 7877d87 (restricted)
+=======
+            Students.objects.create(admin=instance,course_id=Courses.objects.get(id=1),session_year_id=SessionYearModel.objects.get(id=1),address="",profile_pic="",gender="")
+>>>>>>> c42fdfa (added somw chnges)
 
 @receiver(post_save,sender=CustomUser)
 def save_user_profile(sender,instance,**kwargs):
