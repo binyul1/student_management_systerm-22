@@ -52,15 +52,11 @@
         <li class="nav-item">
           {% url 'manage_staff' as manage_staff %} 
           {% url 'edit_staff' staff_id=id as edit_staff %}
-<<<<<<< HEAD
-          <a href="{% url 'manage_staff' %}"
-            class="nav-link {% if request.path == edit_staff %} active {% endif %} {% if request.path == manage_staff %} active {% endif %}">
-=======
+
           <a
             href="{% url 'manage_staff' %}"
             class="nav-link {% if request.path == edit_staff %} active {% endif %} {% if request.path == manage_staff %} active {% endif %}"
           >
->>>>>>> 3877719 (sessionyear1)
             <i class="nav-icon fas fa-th"></i>
             <p>Manage Staff</p>
           </a>
@@ -78,15 +74,11 @@
         <li class="nav-item">
           {% url 'manage_student' as manage_student %} 
           {% url 'edit_student' student_id=id as edit_student %}
-<<<<<<< HEAD
-          <a href="{% url 'manage_student' %}"
-            class="nav-link {% if request.path == manage_student %} active {% endif %} {% if request.path == manage_student %} active {% endif %}">
-=======
+
           <a
             href="{% url 'manage_student' %}"
             class="nav-link {% if request.path == manage_student %} active {% endif %} {% if request.path == manage_student %} active {% endif %}"
           >
->>>>>>> 3877719 (sessionyear1)
             <i class="nav-icon fas fa-th"></i>
             <p>Manage Students</p>
           </a>
@@ -105,15 +97,11 @@
         <li class="nav-item">
           {% url 'manage_course' as manage_course %} 
           {% url 'edit_course' course_id=id as edit_course %}
-<<<<<<< HEAD
-          <a href="{% url 'manage_course' %}"
-            class="nav-link {% if request.path == manage_course %} active {% endif %}{% if request.path == edit_course %} active {% endif %}">
-=======
+
           <a
             href="{% url 'manage_course' %}"
             class="nav-link {% if request.path == manage_course %} active {% endif %}{% if request.path == edit_course %} active {% endif %}"
           >
->>>>>>> 3877719 (sessionyear1)
             <i class="nav-icon fas fa-th"></i>
             <p>Manage Course</p>
           </a>
@@ -131,10 +119,6 @@
         <li class="nav-item">
           {% url 'manage_subject' as manage_subject %} 
           {% url 'edit_subject' subject_id=id as edit_subject %}
-<<<<<<< HEAD
-          <a href="{% url 'manage_subject' %}"
-            class="nav-link {% if request.path == manage_subject %} active {% endif %} {% if request.path == edit_subject %} active {% endif %}">
-=======
           <a
             href="{% url 'manage_subject' %}"
             class="nav-link {% if request.path == manage_subject %} active {% endif %} {% if request.path == edit_subject %} active {% endif %}"
@@ -147,7 +131,6 @@
           {% url 'manage_session' as manage_session %} 
           <a href="{% url 'manage_session' %}" class="nav-link {% if request.path == manage_session %} active {% endif %}"
           >
->>>>>>> 3877719 (sessionyear1)
             <i class="nav-icon fas fa-th"></i>
             <p>
               Manage Session Year
@@ -222,10 +205,7 @@
             </p>
           </a>
         </li>
-<<<<<<< HEAD
 
-=======
->>>>>>> 3877719 (sessionyear1)
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

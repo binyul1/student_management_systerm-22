@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-from django.contrib import messages
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import authenticate,login,logout
-=======
-import datetime
 
+import datetime
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
->>>>>>> 7877d87 (restricted)
 from student_management_app.EmailBackEnd import EmailBackEnd
 from django.urls import reverse
 
@@ -30,15 +23,9 @@ def doLogin(request):
         user=EmailBackEnd.authenticate(request,username=request.POST.get("email"),password=request.POST.get("password"))
         if user!=None:
             login(request,user)
-<<<<<<< HEAD
-            if user.user_type == "1":
-                return HttpResponseRedirect("admin_home")
-            elif user.user_type == "2":
-=======
             if user.user_type=="1":
                 return HttpResponseRedirect('/admin_home')
             elif user.user_type=="2":
->>>>>>> 7877d87 (restricted)
                 return HttpResponseRedirect(reverse("staff_home"))
             else:
                 return HttpResponseRedirect(reverse("student_home"))
